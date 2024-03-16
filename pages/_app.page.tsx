@@ -6,9 +6,9 @@ import {theme} from "dh-marvel/styles/material-theme";
 function MyApp({ Component, pageProps }: AppProps) {
   return <ThemeProvider theme={theme}>
     <CssBaseline />
-    <LayoutGeneral>
+    
       <Component {...pageProps} />
-    </LayoutGeneral>
+    
     <style jsx global>{`
               /* Other global styles such as 'html, body' etc... */
 

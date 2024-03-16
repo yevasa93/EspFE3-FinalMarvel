@@ -4,7 +4,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import NextLink from 'next/link'
+import NextLink from 'next/link';
+import Link from "next/link";
 import {Link as MUILink} from '@mui/material';
 
 type Props = {
@@ -25,7 +26,7 @@ const Header: FC<Props> = ({variant}: Props) => {
             </NextLink>
             {variant == 'general' &&
                 <Box>
-                    <NextLink href="/" passHref>
+                    <NextLink href="/preguntas-frecuentes" passHref>
                         <MUILink variant="body2" sx={{color: 'white', fontSize: 18, fontWeight: 600}}>FAQ</MUILink>
                     </NextLink>
                 </Box>
