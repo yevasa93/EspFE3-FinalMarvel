@@ -1,9 +1,25 @@
-import type {NextPage} from 'next'
+import type {GetServerSideProps, NextPage} from 'next'
 import Head from 'next/head'
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
 import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
+import { getComics } from 'dh-marvel/services/marvel/marvel.service';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { Comic } from 'interface/comic';
 
-const Index: NextPage = () => {
+
+interface ComicsPageProps {
+	comics: Comic[];
+}
+
+
+const ComicsPage: NextPage<ComicsPageProps> = ({comics}) => {
+
     return (
         <LayoutGeneral>
             <Head>
@@ -12,11 +28,46 @@ const Index: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            <BodySingle title={"Sample"}>
-                holi cards
+            <BodySingle title={"COMICS"}>
+                
+
+                <Card sx={{ maxWidth: 220 }}>
+                    <CardMedia
+                        sx={{ height: 150 }}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="green iguana"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h7" component="div">
+                            Lizard
+                        </Typography>
+                        {/* <Typography variant="body2" color="text.secondary">
+                            Lizards are a widespread group of squamate reptiles, with over 6,000
+                            species, ranging across all continents except Antarctica
+                        </Typography> */}
+                    </CardContent>
+                    <CardActions sx={{ justifyContent: 'space-around', gap: 1 }}>
+                        <Button size="small" variant="outlined">VER DETALLE</Button>
+                        <Button size="small" variant="contained">COMPRAR</Button>
+                    </CardActions>
+                </Card>
+
             </BodySingle>
         </LayoutGeneral>
     )
 }
 
-export default Index
+export default ComicsPage
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+    const comics = await getComics();
+
+    // Esta cabecera permite que la página se cachee en el CDN por 60 segundos
+    res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
+
+    return {
+        props: {
+            comics,
+        },
+    };
+};

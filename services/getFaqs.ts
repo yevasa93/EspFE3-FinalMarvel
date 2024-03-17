@@ -1,8 +1,8 @@
 export const getFaqs = async () => {
     try {
          // cambiar ruta antes de hacer push para la construcción de vercel:
-		                            //http://localhost:3000/api/preguntas-frecuentes ----> en vercel seria ----> https://esp-fe-3-final-marvel.vercel.app/preguntas-frecuentes
-        const response = await fetch('https://esp-fe-3-final-marvel.vercel.app/api/preguntas-frecuentes');
+		                            //http://localhost:3000/api/preguntas-frecuentes ----> en vercel seria ----> https://esp-fe-3-final-marvel.vercel.app/api/preguntas-frecuentes
+        const response = await fetch('http://localhost:3000/api/preguntas-frecuentes');
         const data = await response.json();
         return data;
     } catch (error) {
