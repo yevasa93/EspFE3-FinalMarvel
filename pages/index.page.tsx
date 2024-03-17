@@ -13,6 +13,7 @@ const Index: NextPage = () => {
             </Head>
 
             <BodySingle title={"Sample"}>
+                holi cards
             </BodySingle>
         </LayoutGeneral>
     )
