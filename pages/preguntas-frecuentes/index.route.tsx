@@ -69,7 +69,7 @@ const FaqsPage: NextPage<FaqsPageProps> = ({ faqs }) => {
       <div style={{ width: '70%', margin: '5rem' }}>
 
 
-      {/* {faqs.map((faq) => (
+      {faqs.map((faq) => (
           <Accordion expanded={expanded === `panel${faq.id}`} onChange={handleChange(`panel${faq.id}`)} key={faq.id}>
             <AccordionSummary aria-controls={`panel${faq.id}d-content`} id={`panel${faq.id}d-header`}>
               <Typography>{faq.question}</Typography>
@@ -78,46 +78,7 @@ const FaqsPage: NextPage<FaqsPageProps> = ({ faqs }) => {
               <Typography>{faq.answer}</Typography>
             </AccordionDetails>
           </Accordion>
-        ))} */}
-        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-            <Typography>Collapsible Group Item #1</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-              sit amet blandit leo lobortis eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-          <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-            <Typography>Collapsible Group Item #2</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-              sit amet blandit leo lobortis eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-          <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-            <Typography>Collapsible Group Item #3</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-              sit amet blandit leo lobortis eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+        ))}
       </div>
     </LayoutGeneral>
   );
@@ -132,4 +93,5 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   }
 }
 
+/* OJO!!!: este archivo y el que esta dentro de Api deben llamarse igual*/
 export default FaqsPage;
