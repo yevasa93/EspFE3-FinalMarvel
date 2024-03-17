@@ -4,7 +4,6 @@ export const getFaqs = async () => {
 		                            //http://localhost:3000/api/faqs ----> en vercel seria ----> https://esp-fe-3-final-marvel.vercel.app/preguntas-frecuentes
         const response = await fetch('https://esp-fe-3-final-marvel.vercel.app/preguntas-frecuentes');
         const data = await response.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.error('Error en el fetch de getFaqs:', error);
