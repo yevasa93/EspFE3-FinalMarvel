@@ -1,6 +1,32 @@
+export interface ComicImage {
+    path: string;
+    extension: string;
+}
+
+export interface Character {
+    available: number;
+    collectionURI: string;
+	items: ItemCharacter[]
+}
+
+export interface ItemCharacter {
+    resourceURI: string;
+	name:string
+}
+
+export interface ItemDescription {
+    type: string;
+	language:string;
+	text:string
+}
+
 export interface Comic {
-	id : number;
-	title: string;
-	description: string;
-	image: string;
+    characters: Character;
+    price?: number;
+	oldPrice?: number;
+	stock?: number;
+    id: number;
+    title: string;
+    textObjects: ItemDescription[];
+    images: ComicImage[];
 }
