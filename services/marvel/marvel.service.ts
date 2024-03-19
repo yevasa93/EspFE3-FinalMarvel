@@ -34,7 +34,7 @@ export const getComic = async (comicId: number) => {
             comic.oldPrice = 87;
             comic.stock = 2;
         }
-        console.log(comic);
+        
         
         return comic;
     } else return null;

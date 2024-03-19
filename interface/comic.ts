@@ -1,4 +1,4 @@
-export interface ComicImage {
+export interface ImageObject {
     path: string;
     extension: string;
 }
@@ -28,5 +28,5 @@ export interface Comic {
     id: number;
     title: string;
     textObjects: ItemDescription[];
-    images: ComicImage[];
+    images: ImageObject[];
 }
