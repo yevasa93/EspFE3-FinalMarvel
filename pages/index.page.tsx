@@ -15,6 +15,9 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { Box } from '@mui/material';
+import { ComicContext } from 'dh-marvel/pages/comicContext';
+import { useContext } from 'react';
 
 interface ComicsPageProps {
     comics: Comic[];
@@ -22,6 +25,14 @@ interface ComicsPageProps {
 }
 
 const ComicsPage: NextPage<ComicsPageProps> = ({ comics, total }) => {
+
+    const comicContext = useContext(ComicContext); 
+    if (!comicContext) {
+        throw new Error('ComicContext no está definido'); // Manejar el caso en el que el contexto sea undefined
+    }
+    const { setComicId } = comicContext;
+
+
     const router = useRouter();
     const [page, setPage] = React.useState<number>(1);
     const limit = 12;              // <-----------------------------Cantidad de resultados por pagina
@@ -40,7 +51,7 @@ const ComicsPage: NextPage<ComicsPageProps> = ({ comics, total }) => {
             </Head>
 
             <BodySingle title={'COMICS'}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                     {comics.map((itemComic: Comic) => (
                         <Card
                             sx={{ width: '15rem', margin: '2rem', display: 'flex', flexDirection: 'column' }}
@@ -66,14 +77,16 @@ const ComicsPage: NextPage<ComicsPageProps> = ({ comics, total }) => {
                                         <a style={{ textDecoration: 'none', color: '#1565c0' }}>DETAIL</a>
                                     </Link>
                                 </Button>
-                                <Button size="small" variant="contained">
-                                    BUY
-                                </Button>
+                                <Link href={`/checkout/`} passHref>
+                                    <Button size="small" variant="contained" onClick={() => setComicId(itemComic.id)}>
+                                        BUY
+                                    </Button>
+                                </Link>
                             </CardActions>
                         </Card>
                     ))}
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
+                </Box>
+                <Box style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
                     <Stack spacing={2}>
                         <Pagination
                             count={Math.ceil(total / limit)}
@@ -83,7 +96,7 @@ const ComicsPage: NextPage<ComicsPageProps> = ({ comics, total }) => {
                             color="primary"
                         />
                     </Stack>
-                </div>
+                </Box>
             </BodySingle>
         </LayoutGeneral>
     );

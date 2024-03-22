@@ -12,6 +12,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Comic } from 'interface/comic';
 import Link from 'next/link';
+import { Box } from '@mui/material';
+import { useContext } from 'react';
+import { ComicContext } from '../comicContext';
 
 
 interface ComicDetailPageProps {
@@ -20,6 +23,11 @@ interface ComicDetailPageProps {
 
 const ComicDetailPage: NextPage<ComicDetailPageProps> = ({ comicDetail }) => {
 
+    const comicContext = useContext(ComicContext); 
+    if (!comicContext) {
+        throw new Error('ComicContext no está definido'); // Manejar el caso en el que el contexto sea undefined
+    }
+    const { setComicId } = comicContext;
 
     return (
         <LayoutGeneral>
@@ -30,7 +38,7 @@ const ComicDetailPage: NextPage<ComicDetailPageProps> = ({ comicDetail }) => {
             </Head>
 
             <BodySingle title={'COMIC DETAIL'}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                     <Card
                         sx={{ width: '25rem', margin: '20px', display: 'flex', flexDirection: 'column' }}
                         key={comicDetail.id}
@@ -85,12 +93,18 @@ const ComicDetailPage: NextPage<ComicDetailPageProps> = ({ comicDetail }) => {
 
                         </CardContent>
                         <CardActions sx={{ justifyContent: 'space-around' }}>
-                            <Button size="small" variant="contained" disabled={(comicDetail.stock !== undefined && comicDetail.stock < 1) || false}>
-                                BUY
-                            </Button>
+                            <Link href={`/checkout/`} passHref>
+                                <Button size="small" 
+                                variant="contained" 
+                                disabled={(comicDetail.stock !== undefined && comicDetail.stock < 1) || false} 
+                                onClick={() => setComicId(comicDetail.id)}
+                                >
+                                    BUY
+                                </Button>
+                            </Link>
                         </CardActions>
                     </Card>
-                </div>
+                </Box>
 
             </BodySingle>
         </LayoutGeneral>

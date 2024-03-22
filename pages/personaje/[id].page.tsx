@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CharacterDetail } from 'interface/personaje';
+import { Box } from '@mui/material';
 
 
 interface CharacterPageProps {
@@ -27,7 +28,7 @@ const CharacterPage: NextPage<CharacterPageProps> = ({ character }) => {
             </Head>
 
             <BodySingle title={'CHARACTER DETAIL'}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                     <Card
                         sx={{ width: '25rem', margin: '20px', display: 'flex', flexDirection: 'column' }}
                         key={character.id}
@@ -51,7 +52,7 @@ const CharacterPage: NextPage<CharacterPageProps> = ({ character }) => {
                         </CardContent>
 
                     </Card>
-                </div>
+                </Box>
 
             </BodySingle>
         </LayoutGeneral>
