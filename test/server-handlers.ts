@@ -15,13 +15,13 @@ const handlers = [
     }),
     rest.get('/marvel/api/comics/:id', async (req, res, ctx) => {
         const id = req.params.id
-        if (id === "1") return res(ctx.json({data: {results: [comic]}}))
-        if (id === "10") return res(ctx.json({data: {results: [comicWithoutStock]}}))
+        if (id === "82965") return res(ctx.json({data: {results: [comic]}}))
+        if (id === "82970") return res(ctx.json({data: {results: [comicWithoutStock]}}))
         return res(ctx.json({data: {results: []}}))
     }),
     rest.get('/marvel/api/characters/:id', async (req, res, ctx) => {
         const id = req.params.id
-        if (id === "1") return res(ctx.json({data: {results: [character]}}))
+        if (id === "1009310") return res(ctx.json({data: {results: [character]}}))
         return res(ctx.json({data: {results: []}}))
     }),
 ]

@@ -26,7 +26,7 @@ describe('MarvelService', () => {
     describe('when fetching comic', () => {
         describe('when comic is found', () => {
             it('should return a valid comic', async () => {
-                const data = await getComic(1);
+                const data = await getComic(82967);
                 expect(data).toStrictEqual({
                     ...comic,
                     price: 72,
@@ -37,7 +37,7 @@ describe('MarvelService', () => {
         })
         describe('when comic is found with id that ends with 0', () => {
             it('should return a valid comic without stock', async () => {
-                const data = await getComic(10);
+                const data = await getComic(82970);
                 expect(data).toStrictEqual({
                     ...comicWithoutStock,
                     price: 48,
@@ -56,7 +56,7 @@ describe('MarvelService', () => {
     describe('when fetching character', () => {
         describe('when character is found', () => {
             it('should return a valid character', async () => {
-                const data = await getCharacter(1);
+                const data = await getCharacter(1009610);
                 expect(data).toStrictEqual(character)
             })
         })

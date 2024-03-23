@@ -67,6 +67,7 @@ const FaqsPage: NextPage<FaqsPageProps> = ({ faqs }) => {
   return (
     <LayoutGeneral>
       <div style={{ width: '70%', margin: '5rem' }}>
+        <h1 style={{ textAlign: 'center' }}>FAQS</h1>
 
 
       {faqs.map((faq) => (

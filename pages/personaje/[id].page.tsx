@@ -2,7 +2,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import BodySingle from 'dh-marvel/components/layouts/body/single/body-single';
 import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
-import { getCharacter, getComic, getComics } from 'dh-marvel/services/marvel/marvel.service';
+import { getCharacter } from 'dh-marvel/services/marvel/marvel.service';
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

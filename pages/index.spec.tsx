@@ -6,7 +6,7 @@ describe('IndexPage', () => {
     describe('when rendering default', () => {
         it('should render the title', () => {
             render(<Index/>)
-            const title = screen.getByText('Sample')
+            const title = screen.getByText('COMICS')
             expect(title).toBeInTheDocument()
         })
     })

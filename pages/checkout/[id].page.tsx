@@ -18,7 +18,7 @@ import Link from "next/link";
 
 const steps = [
     'Personal Information',
-    'delivery address',
+    'Delivery address',
     'Details of payment',
 ];
 
@@ -33,7 +33,6 @@ const FormCheckout: NextPage<ComicFormPageProps> = ({ comicDetail }) => {
     const {
         control,
         formState: { errors, isValid },
-        
     } = useForm<DataForm>({
         resolver: yupResolver(schema), // Utiliza yupResolver
         mode: "onChange",
@@ -113,7 +112,7 @@ const FormCheckout: NextPage<ComicFormPageProps> = ({ comicDetail }) => {
                 zipCode: zipCode,
                 comicTitle: comicDetail.title,
                 comicPrice: comicDetail.price,
-                comicImage: comicDetailImage     
+                comicImage: comicDetailImage        
             }
         });
     };
