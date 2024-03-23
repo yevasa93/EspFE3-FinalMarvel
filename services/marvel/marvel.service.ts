@@ -7,7 +7,6 @@ const fetchApi = async (endpoint: string, urlParams?: string) => {
     const url = `${MARVEL_API_URL}/${endpoint}?${authString}&${urlParams || ''}`
     const response = await fetch(url);
 
-
     return await response.json();
 }
 
@@ -34,7 +33,6 @@ export const getComic = async (comicId: number) => {
             comic.oldPrice = 87;
             comic.stock = 2;
         }
-        
         
         return comic;
     } else return null;

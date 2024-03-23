@@ -13,8 +13,7 @@ import Typography from '@mui/material/Typography';
 import { Comic } from 'interface/comic';
 import Link from 'next/link';
 import { Box } from '@mui/material';
-import { useContext } from 'react';
-import { ComicContext } from '../comicContext';
+
 
 
 interface ComicDetailPageProps {
@@ -22,12 +21,6 @@ interface ComicDetailPageProps {
 }
 
 const ComicDetailPage: NextPage<ComicDetailPageProps> = ({ comicDetail }) => {
-
-    const comicContext = useContext(ComicContext); 
-    if (!comicContext) {
-        throw new Error('ComicContext no está definido'); // Manejar el caso en el que el contexto sea undefined
-    }
-    const { setComicId } = comicContext;
 
     return (
         <LayoutGeneral>
@@ -93,11 +86,10 @@ const ComicDetailPage: NextPage<ComicDetailPageProps> = ({ comicDetail }) => {
 
                         </CardContent>
                         <CardActions sx={{ justifyContent: 'space-around' }}>
-                            <Link href={`/checkout/`} passHref>
+                            <Link href={`/checkout/${comicDetail.id}`} passHref>
                                 <Button size="small" 
                                 variant="contained" 
                                 disabled={(comicDetail.stock !== undefined && comicDetail.stock < 1) || false} 
-                                onClick={() => setComicId(comicDetail.id)}
                                 >
                                     BUY
                                 </Button>
@@ -118,11 +110,11 @@ export const getServerSideProps: GetServerSideProps<ComicDetailPageProps> = asyn
         const id = parseInt(query.id as string) || 0; 
         const comicDetail = await getComic(id); // Utiliza la función getComic para obtener el detalle del cómic
 
-        return {
-            props: {
-                comicDetail: comicDetail, // Pasa el detalle del cómic como prop
-            },
-        };
+            return {
+                props: {
+                    comicDetail: comicDetail, // Pasa el detalle del cómic como prop
+                },
+            };
     } catch (error) {
         console.error('Error fetching comic detail:', error);
         return {

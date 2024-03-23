@@ -16,8 +16,6 @@ import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Box } from '@mui/material';
-import { ComicContext } from 'dh-marvel/pages/comicContext';
-import { useContext } from 'react';
 
 interface ComicsPageProps {
     comics: Comic[];
@@ -25,13 +23,6 @@ interface ComicsPageProps {
 }
 
 const ComicsPage: NextPage<ComicsPageProps> = ({ comics, total }) => {
-
-    const comicContext = useContext(ComicContext); 
-    if (!comicContext) {
-        throw new Error('ComicContext no está definido'); // Manejar el caso en el que el contexto sea undefined
-    }
-    const { setComicId } = comicContext;
-
 
     const router = useRouter();
     const [page, setPage] = React.useState<number>(1);
@@ -77,8 +68,8 @@ const ComicsPage: NextPage<ComicsPageProps> = ({ comics, total }) => {
                                         <a style={{ textDecoration: 'none', color: '#1565c0' }}>DETAIL</a>
                                     </Link>
                                 </Button>
-                                <Link href={`/checkout/`} passHref>
-                                    <Button size="small" variant="contained" onClick={() => setComicId(itemComic.id)}>
+                                <Link href={`/checkout/${itemComic.id}`} passHref>
+                                    <Button size="small" variant="contained">
                                         BUY
                                     </Button>
                                 </Link>
